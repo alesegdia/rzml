@@ -1,23 +1,23 @@
-#include "rng.h"
-#include "vec.h"
+#include "rzml/RNG.h"
+#include "rzml/Vec.h"
 
-float aether::math::lerp(float a, float b, float t)
+float rzml::lerp(float a, float b, float t)
 {
     return (1 - t) * a + t * b;
 }
 
 
-int aether::math::randi(int min, int max)
+int rzml::randi(int min, int max)
 {
     return min + randi(max - min);
 }
 
-int aether::math::randi(int max)
+int rzml::randi(int max)
 {
     return std::rand() % max;
 }
 
-size_t aether::math::split(const std::string &txt, std::vector<std::string> &strs, char ch)
+size_t rzml::split(const std::string &txt, std::vector<std::string> &strs, char ch)
 {
     size_t pos = txt.find( ch );
     size_t initialPos = 0;

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace aether::math {
+namespace rzml {
 
 
     template <typename T>

@@ -19,9 +19,8 @@ project(RZMLTests)
 enable_testing()
 
 file(GLOB TEST_SOURCES "test/*.cpp")
-file(GLOB RZML_HEADERS "include/**/*.h")
-file(GLOB RZML_SOURCES "source/**/*.cpp")
-
+file(GLOB RZML_HEADERS "include/rzml/*.h")
+file(GLOB RZML_SOURCES "source/*.cpp")
 
 add_executable(rzml_tests ${TEST_SOURCES} ${RZML_HEADERS} ${RZML_SOURCES})
 
@@ -34,6 +33,7 @@ target_include_directories(
     rzml_tests
     PRIVATE
     ${CMAKE_SOURCE_DIR}/include
+    ${CMAKE_SOURCE_DIR}/3rdparty/glm
 )
 
 include(GoogleTest)

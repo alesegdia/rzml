@@ -1,0 +1,8 @@
+/build/
+*.swp
+*.gcda
+*.gcno
+*.gch
+*.sw*
+00
+

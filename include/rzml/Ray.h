@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 
 
-namespace aether::math
+namespace rzml
 {
 	struct Ray
 	{

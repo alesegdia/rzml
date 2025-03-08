@@ -2,12 +2,13 @@
 
 #include <random>
 
-namespace aether {
-namespace math {
+namespace rzml {
 
 int randi(int min, int max);
 
 int randi(int max);
+
+float lerp(float a, float b, float t);
 
 
 size_t split(const std::string &txt, std::vector<std::string> &strs, char ch);
@@ -54,5 +55,6 @@ private:
 
 };
 
+
 }
-}
+

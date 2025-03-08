@@ -2,10 +2,10 @@
 
 #include <glm/glm.hpp>
 #include <algorithm>
-#include "aether/math/Ray.h"
+#include "rzml/Ray.h"
 
 
-namespace aether::math
+namespace rzml
 {
 
 	class AABB
@@ -15,7 +15,7 @@ namespace aether::math
 		AABB(const glm::fvec3& min, const glm::fvec3& max) : m_min(min), m_max(max) {}
 		AABB(const AABB& other) : AABB(other.m_min, other.m_max) {}
 
-		bool Intersects(const aether::math::Ray& ray) const
+		bool Intersects(const rzml::Ray& ray) const
 		{
 			float tmin = (m_min.x - ray.origin.x) / ray.direction.x;
 			float tmax = (m_max.x - ray.origin.x) / ray.direction.x;
@@ -64,7 +64,7 @@ namespace aether::math
 			return true;
 		}
 
-		bool Intersects(const aether::math::Ray& ray, glm::fvec3& outIntersectionPoint) const
+		bool Intersects(const Ray& ray, glm::fvec3& outIntersectionPoint) const
 		{
 			float tmin = (m_min.x - ray.origin.x) / ray.direction.x;
 			float tmax = (m_max.x - ray.origin.x) / ray.direction.x;
@@ -114,7 +114,7 @@ namespace aether::math
 			return true;
 		}
 
-		bool Intersects(const aether::math::Ray& ray, glm::fvec3& outIntersectionPoint, glm::fvec3& normal) const
+		bool Intersects(const Ray& ray, glm::fvec3& outIntersectionPoint, glm::fvec3& normal) const
 		{
 			float tmin = (m_min.x - ray.origin.x) / ray.direction.x;
 			float tmax = (m_max.x - ray.origin.x) / ray.direction.x;
