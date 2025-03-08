@@ -1,5 +1,7 @@
 #include "rzml/LinePlaneIntersection.h"
 
+#include <algorithm>
+
 namespace rzml
 {
 
@@ -54,6 +56,40 @@ namespace rzml
 		return aMin.x <= bMax.x && aMax.x >= bMin.x &&
 			aMin.y <= bMax.y && aMax.y >= bMin.y &&
 			aMin.z <= bMax.z && aMax.z >= bMin.z;
+	}
+
+	bool LineLineIntersection(const glm::fvec2& p1, const glm::fvec2& p2, const glm::fvec2& p3, const glm::fvec2& p4, glm::fvec2& outIntersection)
+	{
+		float x1 = p1.x, y1 = p1.y;
+		float x2 = p2.x, y2 = p2.y;
+		float x3 = p3.x, y3 = p3.y;
+		float x4 = p4.x, y4 = p4.y;
+
+		float d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+		if (d == 0)
+		{
+			return false;
+		}
+
+		float pre = x1 * y2 - y1 * x2;
+		float post = x3 * y4 - y3 * x4;
+		float x = (pre * (x3 - x4) - (x1 - x2) * post) / d;
+		float y = (pre * (y3 - y4) - (y1 - y2) * post) / d;
+
+		if (x < std::min(x1, x2) || x > std::max(x1, x2) ||
+			x < std::min(x3, x4) || x > std::max(x3, x4))
+		{
+			return false;
+		}
+		if (y < std::min(y1, y2) || y > std::max(y1, y2) ||
+			y < std::min(y3, y4) || y > std::max(y3, y4))
+		{
+			return false;
+		}
+
+		outIntersection.x = x;
+		outIntersection.y = y;
+		return true;
 	}
 
 }
