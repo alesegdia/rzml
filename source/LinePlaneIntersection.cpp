@@ -92,4 +92,28 @@ namespace rzml
 		return true;
 	}
 
+	bool InfiniteLineInfiniteLineIntersection(const glm::fvec2& p1, const glm::fvec2& p2, const glm::fvec2& p3, const glm::fvec2& p4, glm::fvec2& outIntersection)
+	{
+		float x1 = p1.x, y1 = p1.y;
+		float x2 = p2.x, y2 = p2.y;
+		float x3 = p3.x, y3 = p3.y;
+		float x4 = p4.x, y4 = p4.y;
+
+		float d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+		if(d == 0)
+		{
+			return false;
+		}
+
+		float pre = x1 * y2 - y1 * x2;
+		float post = x3 * y4 - y3 * x4;
+		float x = (pre * (x3 - x4) - (x1 - x2) * post) / d;
+		float y = (pre * (y3 - y4) - (y1 - y2) * post) / d;
+
+		outIntersection.x = x;
+		outIntersection.y = y;
+		return true;
+	}
+
+
 }
