@@ -156,8 +156,18 @@ namespace rzml {
 	bool Intersect(Rect<T> a, Rect<T> b)
 	{
 		return a.GetX1() < b.GetX2() && a.GetX2() > b.GetX1() &&
-			a.GetY1() < b.GetY2() && a.GetY2() > b.GetY1();
+			   a.GetY1() < b.GetY2() && a.GetY2() > b.GetY1();
 	}
+
+
+	template <typename T>
+	bool Intersect(Rect<T> a, glm::fvec2& aOffset, Rect<T> b, glm::fvec2& bOffset)
+	{
+		return a.GetX1() + aOffset.x < b.GetX2() + bOffset.x && a.GetX2() + aOffset.x > b.GetX1() + bOffset.x &&
+			   a.GetY1() + aOffset.y < b.GetY2() + bOffset.y && a.GetY2() + aOffset.y > b.GetY1() + bOffset.y;
+	}
+
+
 
 	template <typename T>
 	float Clamp(T v, T min, T max)
