@@ -153,21 +153,32 @@ namespace rzml {
 	typedef Rect<int> Recti;
 
 	template <typename T>
-	bool Intersect(Rect<T> a, Rect<T> b)
+	bool Intersect(const Rect<T> a, const Rect<T> b)
 	{
 		return a.GetX1() < b.GetX2() && a.GetX2() > b.GetX1() &&
-			   a.GetY1() < b.GetY2() && a.GetY2() > b.GetY1();
+			a.GetY1() < b.GetY2() && a.GetY2() > b.GetY1();
 	}
-
 
 	template <typename T>
-	bool Intersect(Rect<T> a, glm::fvec2& aOffset, Rect<T> b, glm::fvec2& bOffset)
+	bool Intersect(const Rect<T> a, const Vec2<T>& aOffset, const Rect<T> b, const Vec2<T>& bOffset)
 	{
-		return a.GetX1() + aOffset.x < b.GetX2() + bOffset.x && a.GetX2() + aOffset.x > b.GetX1() + bOffset.x &&
-			   a.GetY1() + aOffset.y < b.GetY2() + bOffset.y && a.GetY2() + aOffset.y > b.GetY1() + bOffset.y;
+		return a.GetX1() + aOffset.GetX() < b.GetX2() + bOffset.GetX() && a.GetX2() + aOffset.GetX() > b.GetX1() + bOffset.GetX() &&
+			a.GetY1() + aOffset.GetY() < b.GetY2() + bOffset.GetY() && a.GetY2() + aOffset.GetY() > b.GetY1() + bOffset.GetY();
 	}
 
+	template <typename T>
+	bool Intersect(const Rect<T> a, const Vec2<T>& aOffset, const Rect<T> b)
+	{
+		return a.GetX1() + aOffset.GetX() < b.GetX2() && a.GetX2() + aOffset.GetX() > b.GetX1() &&
+			a.GetY1() + aOffset.GetY() < b.GetY2() && a.GetY2() + aOffset.GetY() > b.GetY1();
+	}
 
+	template <typename T>
+	bool Intersect(const Rect<T> a, const Rect<T> b, const Vec2<T>& bOffset)
+	{
+		return a.GetX1() < b.GetX2() + bOffset.GetX() && a.GetX2() > b.GetX1() + bOffset.GetX() &&
+			a.GetY1() < b.GetY2() + bOffset.GetY() && a.GetY2() > b.GetY1() + bOffset.GetY();
+	}
 
 	template <typename T>
 	float Clamp(T v, T min, T max)
