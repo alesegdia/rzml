@@ -36,3 +36,10 @@ size_t rzml::split(const std::string &txt, std::vector<std::string> &strs, char 
 
     return strs.size();
 }
+
+std::vector<std::string> rzml::split(const std::string& txt, char ch)
+{
+	std::vector<std::string> strs;
+	split(txt, strs, ch);
+	return strs;
+}

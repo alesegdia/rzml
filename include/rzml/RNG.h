@@ -12,6 +12,7 @@ float lerp(float a, float b, float t);
 
 
 size_t split(const std::string &txt, std::vector<std::string> &strs, char ch);
+std::vector<std::string> split(const std::string& txt, char ch);
 
 class WeightedRandomGenerator
 {
