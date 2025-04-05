@@ -140,6 +140,11 @@ namespace rzml {
 			return m_size;
 		}
 
+		bool operator==(const Rect<T>& other) const
+		{
+			return m_position == other.m_position && m_size == other.m_size;
+		}
+
 	private:
 		void computeCenter()
 		{
